@@ -1,6 +1,7 @@
 <?php
-require_once 'ICLS_Secret.php';
+
 function confederated_session($sessId) {
+    require_once 'ICLS_Secret.php';
     session_start();
     $headerAppend = "";
     if ($_SESSION["loggedin"] != true) {
