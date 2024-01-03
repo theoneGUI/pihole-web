@@ -35,9 +35,9 @@ function confederated_session($sessId) {
     else {
         if ($headerAppend != "") {
             foreach ($jsoned as $key => $val) {
-            if ($key == "status")
-                continue;
-            $_SESSION[$key] = $val;
+                if ($key == "status")
+                    continue;
+                $_SESSION[$key] = $val;
             }
         }
         return true;
