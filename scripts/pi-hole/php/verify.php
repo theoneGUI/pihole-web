@@ -1,7 +1,9 @@
 <?php
 session_start();
+require_once 'icls.php';
 
-if ($_SESSION["auth"]) {
+if ($_SESSION["auth"] || confederated_session($_COOKIE["ICLS_Int_Sess"])) {
+    header("Location: /");
     die("already logged in");
 }
 
