@@ -7,9 +7,8 @@ if ($_SESSION["auth"] || confederated_session($_COOKIE["ICLS_Int_Sess"])) {
     die("already logged in");
 }
 
-$DB_PATH = "../../../db/database.db";
-
 function connect() {
+    $DB_PATH = "../../../db/database.db";
     $tmp = !file_exists($DB_PATH);
     $db = new SQLite3($DB_PATH);
     if ($tmp) {
@@ -45,7 +44,7 @@ if ($sessVars = json_decode(urldecode($_POST["session"]),true)) {
     $fetchedToken = $result[0]["tokenGiven"];
     $fetchedCollateral = $result[0]["collateral"];
     
-    if ($fetchedToken == $sessVars["loginToken"];) {
+    if ($fetchedToken == $sessVars["loginToken"]) {
         $valid_tokens = array();
         for ($i = 0; $i < 10; $i++) {
             if ($sessVars["loginToken"] == hash("SHA512",($sessVars["id"] . $sessVars["username"] . gmdate("d-m-Y h:i:s", strtotime("-{$i} seconds"))))) {
