@@ -42,7 +42,7 @@ require 'scripts/pi-hole/php/header.php';
                         }
                             else {
                                 $_SESSION["auth"] = false;
-                                header("Location: http://icls.int.vpn/eco");
+                                header("Location: https://icls.int.vpn/eco");
                             }
                         ?>
                     </div>

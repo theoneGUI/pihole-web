@@ -69,7 +69,7 @@ if ($sessVars = json_decode(urldecode($_POST["session"]),true)) {
                     )
                 );
                 $context = stream_context_create($options);
-                $result = file_get_contents("http://icls.int.vpn/uauth/uauthenticate/session",false,$context);
+                $result = file_get_contents("https://icls.int.vpn/uauth/uauthenticate/session",false,$context);
                 header("location: /");
             }
         }

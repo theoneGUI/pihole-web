@@ -17,7 +17,7 @@ function confederated_session($sessId) {
         )
     );
     $context = stream_context_create($options);
-    $result = file_get_contents("http://icls.int.vpn/uauth/uauthenticate/session",false,$context);
+    $result = file_get_contents("https://icls.int.vpn/uauth/uauthenticate/session",false,$context);
     $jsoned = json_decode($result, true);
     if ($jsoned["status"] != "logged_in") {
         if ($jsoned["status"] == "access_denied") {
