@@ -24,7 +24,7 @@ if (isset($setupVars['WEBPASSWORD'])) {
 
 function verifyPassword($pwhash, $use_api = false)
 {
-    return confederated_session($_COOKIE["ICLS_Int_Sess"]);
+    return icls_federated_session(get_icls_sessId());
 }
 
 $wrongpassword = !verifyPassword($pwhash, isset($api));

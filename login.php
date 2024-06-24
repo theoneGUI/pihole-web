@@ -37,12 +37,12 @@ require 'scripts/pi-hole/php/header.php';
                 <form action="" id="loginform" method="post">
                     <div class="form-group">
                        <p>This site relies on ICLS and Uauth to sign in.</p>
-                       <?php if (confederated_session($_COOKIE["ICLS_Int_Sess"])) {
-                            $_SESSION['auth'] = true;
-                        }
+                       <?php if (icls_federated_session(icls_sessvar())) {
+                                $_SESSION['auth'] = true;
+                            }
                             else {
                                 $_SESSION["auth"] = false;
-                                header("Location: https://icls.int.vpn/eco");
+                                header("Location: https://icls.com.rayd?returnURL=http%3A%2F%2F".$_SERVER["HTTP_HOST"]."%2Fscripts%2Fpi-hole%2Fphp%2Fverify.php");
                             }
                         ?>
                     </div>

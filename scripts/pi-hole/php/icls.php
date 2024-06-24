@@ -1,6 +1,31 @@
 <?php
 
-function confederated_session($sessId) {
+function get_icls_sessId() {
+    if (icls_sessvar())
+        return icls_sessvar();
+    else if (icls_cookie())
+        return icls_cookie();
+    else
+        return icls_header();
+}
+
+function icls_cookie() {
+    return $_COOKIE["ICLS_Int_Sess"];
+}
+
+function icls_sessvar() {
+    return $_SESSION["ICLS_Int_Sess"];
+}
+
+function icls_header() {
+    return $_SERVER["HTTP_X_ICLS_INT_SESS"];
+}
+
+function icls_post() {
+    return $_POST["ICLS_Int_Sess"];
+}
+
+function icls_federated_session($sessId) {
     require_once 'ICLS_Secret.php';
     session_start();
     $headerAppend = "";
@@ -17,7 +42,7 @@ function confederated_session($sessId) {
         )
     );
     $context = stream_context_create($options);
-    $result = file_get_contents("https://icls.int.vpn/uauth/uauthenticate/session",false,$context);
+    $result = file_get_contents("https://icls.com.rayd/uauth/uauthenticate/session",false,$context);
     $jsoned = json_decode($result, true);
     if ($jsoned["status"] != "logged_in") {
         if ($jsoned["status"] == "access_denied") {
